@@ -12,7 +12,7 @@ var GameScene = cc.Scene.extend({
         sprite.setScale(0.8);
         this.addChild(sprite, 0);
 
-        var label = new cc.LabelTTF("EnderDot", "Arial", 40);
+        var label = new cc.LabelTTF("Dot", "Arial", 40);
         label.setPosition(size.width / 2, size.height / 2);
         this.addChild(label, 1);
     }
