@@ -1,9 +1,5 @@
-/**
- * Created by zack on 2017/6/1.
- */
-
 var res = {
-    hello_world : "res/HelloWorld.png"
+    icon : "res/icon.png"
 };
 
 var resources = [];
