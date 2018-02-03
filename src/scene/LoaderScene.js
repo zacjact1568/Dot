@@ -11,8 +11,8 @@ var LoaderScene = cc.Scene.extend({
     // 需手动调用
     init: function () {
         // 背景层
-        var backgroundLayer = cc.LayerColor.create(cc.color(240, 240, 240));
-        this.addChild(backgroundLayer, 0);
+        var backgroundLayer = cc.LayerColor.create(parseColor(color.light));
+        this.addChild(backgroundLayer);
 
         // 异步加载 icon 图片资源
         var center = cc.visibleRect.center;
@@ -26,21 +26,23 @@ var LoaderScene = cc.Scene.extend({
             logoTexture2d.handleLoadedTexture();
             var logo = cc.Sprite.create(logoTexture2d);
             logo.attr({
+                // 该节点在层中的位置
                 x: center.x,
                 y: center.y,
-                scale: cc.contentScaleFactor()
+                // 缩放倍数
+                scale: 0.5
             });
-            backgroundLayer.addChild(logo, 1);
+            backgroundLayer.addChild(logo, 0);
         });
 
-        //进度
+        // 进度
         var progress = this._progress = cc.LabelTTF.create('0%', 'Arial', 20);
         progress.attr({
             x: center.x,
             y: center.y,
-            color: cc.color(255, 255, 255)
+            color: parseColor(color.light)
         });
-        backgroundLayer.addChild(progress, 2);
+        backgroundLayer.addChild(progress, 1);
 
         return true;
     },
