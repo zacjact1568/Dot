@@ -1,27 +1,27 @@
 var GameLayer = cc.Layer.extend({
 
-    // Dot 数量
-    _dotCount: 10,
-    // 最小等待时间（s）
-    _minWaitTime: 1,
-    // 最大等待时间（s）
-    _maxWaitTime: 2,
-    // 最小持续时间（s）
-    _minDurationTime: 1,
-    // 最大持续时间（s）
-    _maxDurationTime: 2,
-    // 最大生成间隔时间（s）
-    _maxIntervalTime: 2,
+    // Dot 总数
+    _dotCount: 20,
+    // 最小等待时间（s，1 位小数）
+    _minWaitTime: 0.5,
+    // 最大等待时间（s，1 位小数）
+    _maxWaitTime: 1,
+    // 最小持续时间（s，1 位小数）
+    _minDurationTime: 0.5,
+    // 最大持续时间（s，1 位小数）
+    _maxDurationTime: 1,
+    // 最大生成间隔时间（s，1 位小数）
+    _maxIntervalTime: 1,
     // 最大初始不透明度（0-255）
-    _maxInitialOpacity: 200,
+    _maxInitialOpacity: 100,
     // 围绕圈的最小初始尺度倍数（1 位小数）
     _minInitialRoundScale: 1,
     // 围绕圈的最大初始尺度倍数（1 位小数）
     _maxInitialRoundScale: 1.3,
-    // Dot 坐标限制
-    _dotRestrict: 50,
-    // 触摸半径
-    _touchRadius: 50,
+    // Dot 坐标限制（围绕圈最大半径，防止伸出屏幕外）
+    _dotRestrict: 100,
+    // 有效触摸半径（设为 dot 的半径）
+    _touchRadius: 40,
     // 分数 label 到边缘的距离
     _scoreMargin: 60,
 
@@ -165,7 +165,7 @@ var GameLayer = cc.Layer.extend({
                 // 横坐标
                 positionX: random(this._dotRestrict, this._winSize.width - this._dotRestrict),
                 // 纵坐标
-                positionY: random(this._dotRestrict, this._winSize.height - this._dotRestrict),
+                positionY: random(this._dotRestrict, this._winSize.height - this._dotRestrict - this._scoreMargin - this._scoreLabel.height),
                 // 出现时间
                 appearingTime: random(time * 10, (time + this._maxIntervalTime) * 10) / 10,
                 // 可触摸状态前的等待时间
