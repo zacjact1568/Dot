@@ -15,9 +15,9 @@ var GameLayer = cc.Layer.extend({
     // 最大初始不透明度（0-255）
     _maxInitialOpacity: 200,
     // 围绕圈的最小初始尺度倍数（1 位小数）
-    _minInitialRoundScale: 1.5,
+    _minInitialRoundScale: 1,
     // 围绕圈的最大初始尺度倍数（1 位小数）
-    _maxInitialRoundScale: 2,
+    _maxInitialRoundScale: 1.3,
     // Dot 坐标限制
     _dotRestrict: 50,
     // 触摸半径
@@ -196,7 +196,8 @@ var GameLayer = cc.Layer.extend({
 
         dotRound.runAction(cc.spawn(
             cc.fadeIn(this._dot.waitTime),
-            cc.scaleTo(this._dot.waitTime, 1)
+            // 150px -> 100px，约 0.67 倍
+            cc.scaleTo(this._dot.waitTime, 0.67)
         ));
 
         var dot = cc.Sprite.create(res.dot);
